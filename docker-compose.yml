@@ -10,3 +10,24 @@ services:
     volumes:
       - ./work:/var/lib/postgresql/work
       - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    networks:
+        - db_network
+  pgadmin:
+    image: dpage/pgadmin4:8.3
+    volumes:
+      - pgadmindata:/var/lib/pgadmin4/storage
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@example.com
+      PGADMIN_DEFAULT_PASSWORD: root
+      TZ: Asia/Tokyo
+    depends_on:
+      - db
+    ports:
+      - "5050:80"
+    networks:
+      - db_network
+networks:
+  db_network:
+volumes:
+  postgres-data:
+  pgadmindata:
