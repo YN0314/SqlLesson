@@ -13,7 +13,7 @@ services:
     networks:
         - db_network
   pgadmin:
-    image: dpage/pgadmin4:8.3
+    image: dpage/pgadmin4:latest
     volumes:
       - pgadmindata:/var/lib/pgadmin4/storage
     environment:
